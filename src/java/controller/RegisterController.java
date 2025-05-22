@@ -33,14 +33,12 @@ public class RegisterController extends HttpServlet {
 
                 AccountDAO dao = new AccountDAO();
 
-                // Kiểm tra email đã tồn tại chưa
                 if (dao.checkEmailExist(email)) {
                     request.setAttribute("error", "Email đã được sử dụng");
                     request.getRequestDispatcher("login.html").forward(request, response);
                     return;
                 }
 
-                // Đăng ký tài khoản
                 boolean success = dao.register(name, email, password, birthdate, gender);
 
                 if (success) {
